@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donor Registration</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    background-image: url('assets/donor\ register.jpg');  
+    background-size: cover;                  
+    background-repeat: no-repeat;            
+    background-position: center;            
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}    
+
+.register-box {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(225, 225, 225, .2);
+    box-shadow: 0 15px 15px rgba(0, 0, 0, .2);
+    border-radius: 10px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #e60000;
+}
+
+.field-wrapper {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-top: 25px;
+}
+
+.field-wrapper input,
+.field-wrapper select {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 2px solid #000;
+    padding-right: 30px;
+}
+
+/* Date input specific styling */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0; /* Hidden but clickable to trigger the system calendar */
+    position: absolute;
+    right: 0;
+    width: 20px;
+}
+
+.field-wrapper input:focus,
+.field-wrapper input:valid,
+.field-wrapper select:focus,
+.field-wrapper select:valid {
+    border-bottom: 2px solid red;
+}
+
+.field-wrapper label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+    color: #333;
+}
+
+/* Calendar label fix: hamesha upar rahega agar value hai ya date type hai */
+.field-wrapper input:focus~label,
+.field-wrapper input:valid~label,
+.field-wrapper select:focus~label,
+.field-wrapper select:valid~label,
+.field-wrapper input[type="date"]~label {
+    top: -6px;
+    font-size: 13px;
+    color: #e60000;
+}
+
+.field-wrapper i {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    color: #000;
+    pointer-events: none;
+}
+
+button {
+    width: 100%;
+    height: 45px;
+    margin-top: 35px;
+    border: 2px solid red;
+    background: transparent;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .5s;
+    color: #000;
+}
+
+button:hover {
+    background: red;
+    color: #fff;
+}
+</style>
+
+<script>
+// Age calculate karne ka logic
+function getCalculatedAge(birthday) {
+    const birthDate = new Date(birthday);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+
+function validateForm() {
+    let dobValue = document.getElementById("dob").value;
+    let mobile = document.getElementById("mobile").value;
+
+    if(!dobValue) {
+        alert("Please select your Date of Birth");
+        return false;
+    }
+
+    let age = getCalculatedAge(dobValue);
+
+    if(age < 18) {
+        alert("Donor age must be 18 or above. Your current age is: " + age);
+        return false;
+    }
+    if(mobile.length != 10 || isNaN(mobile)) {
+        alert("Enter a valid 10-digit mobile number");
+        return false;
+    }
+
+    alert("Registration Successful ❤️ (Age: " + age + ")");
+    return true;
+}
+</script>
+</head>
+
+<body>
+
+<div class="register-box">
+    <h2>Donor Registration</h2>
+
+    <form onsubmit="return validateForm()">
+        <div class="field-wrapper">
+            <input type="text" required>
+            <label>Full Name</label>
+            <i class="fa-solid fa-user"></i>
+        </div>
+
+        <div class="field-wrapper">
+            <input type="date" id="dob" required>
+            <label>Date of Birth</label>
+            <i class="fa-solid fa-calendar-days"></i>
+        </div>
+
+        <div class="field-wrapper">
+            <select required>
+                <option value="" disabled selected hidden></option>
+                <option>A+</option><option>B+</option>
+                <option>O+</option><option>AB+</option>
+                <option>A-</option><option>B-</option>
+                <option>O-</option><option>AB-</option>
+            </select>
+            <label>Blood Group</label>
+            <i class="fa-solid fa-droplet"></i>
+        </div>
+
+        <div class="field-wrapper">
+            <input type="text" id="mobile" maxlength="10" required>
+            <label>Mobile Number</label>
+            <i class="fa-solid fa-phone"></i>
+        </div>
+
+        <div class="field-wrapper">
+            <input type="text" required>
+            <label>City</label>
+            <i class="fa-solid fa-location-dot"></i>
+        </div>
+
+        <button type="submit">Register Now</button>
+    </form>
+</div>
+
+</body>
+</html>

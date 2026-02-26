@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Blood Donation System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1536856492748-80c48e1eaaad?q=80&w=1600&auto=format&fit=crop');
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .about-hero {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .about-hero h1 {
+            font-size: 3.5rem;
+            color: #ff4d4d;
+            margin-bottom: 15px;
+        }
+
+        /* Stats Section (Interactive Counters) */
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 50px 10%;
+            background: rgba(255, 77, 77, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-item {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .stat-item h2 {
+            font-size: 2.5rem;
+            color: #ff4d4d;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 80px 10%;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .content-section:nth-child(even) {
+            flex-direction: row-reverse;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .text-box { flex: 1; }
+        .text-box h2 { color: #ff4d4d; margin-bottom: 20px; font-size: 2rem; }
+
+        /* Step Timeline */
+        .timeline {
+            padding: 80px 10%;
+            text-align: center;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .step {
+            flex: 1;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #ff4d4d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 0 20px rgba(255, 77, 77, 0.5);
+        }
+
+        .step:hover .step-number {
+            transform: scale(1.2);
+            transition: 0.3s;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #111;
+        }
+
+        @media (max-width: 768px) {
+            .content-section, .steps { flex-direction: column; text-align: center; }
+            .about-hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="about-hero">
+        <h1>Who We Are</h1>
+        <p style="max-width: 700px;">Hum ek aise bridge hain jo blood donors aur zarooratmand logon ko ek platform par late hain taaki sahi waqt par jaan bachayi ja sake.</p>
+    </section>
+
+    <section class="stats-container">
+        <div class="stat-item">
+            <h2>1500+</h2>
+            <p>Happy Donors</p>
+        </div>
+        <div class="stat-item">
+            <h2>2800+</h2>
+            <p>Lives Saved</p>
+        </div>
+        <div class="stat-item">
+            <h2>50+</h2>
+            <p>Blood Banks</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="text-box">
+            <h2>Our Mission</h2>
+            <p>Hamaara maksad desh ke har kone mein khoon ki kami ko khatam karna hai. Digital technology ke zariye hum blood request aur donation ke process ko fast aur transparent banate hain.</p>
+        </div>
+        <div style="flex: 1; text-align: center;">
+            <img src="https://cdn-icons-png.flaticon.com/512/822/822102.png" width="200" style="filter: drop-shadow(0 0 10px #ff4d4d);">
+        </div>
+    </section>
+
+    <section class="timeline">
+        <h2>Donation Process</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Registration</h3>
+                <p>Website par donor ke roop mein sign up karein.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Check Eligibility</h3>
+                <p>Health parameters verify karein.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Donate</h3>
+                <p>Kareebi blood bank ya camp par jaakar donate karein.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Save Life</h3>
+                <p>Aapka khoon kisi ki zindagi bachata hai.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Online Blood Donation | Together We Can</p>
+    </footer>
+
+</body>
+</html>

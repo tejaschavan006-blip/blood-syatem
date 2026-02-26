@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pune Blood Directory | Interactive Search</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body {
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop');
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+            padding: 40px 10%;
+        }
+
+        .header { text-align: center; margin-bottom: 50px; }
+        .header h1 { color: #ff4d4d; font-size: 2.5rem; text-transform: uppercase; }
+        
+        /* Result Counter Style */
+        #resultCount {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #2ecc71;
+            font-weight: bold;
+        }
+
+        .search-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            background: white;
+        }
+
+        .bank-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .bank-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 20px;
+            transition: 0.3s;
+            position: relative;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .bank-card:hover {
+            background: rgba(255, 77, 77, 0.1);
+            border-color: #ff4d4d;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .status-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #2ecc71;
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .bank-card h3 { color: #ff4d4d; margin-bottom: 10px; font-size: 1.3rem; }
+        .bank-card p { font-size: 0.9rem; color: #ccc; margin-bottom: 5px; }
+
+        .stock-info {
+            display: flex;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .group-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 8px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            border: 1px solid #ff4d4d;
+        }
+
+        .btn-call {
+            display: block;
+            text-align: center;
+            background: #ff4d4d;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-call:hover { background: #fff; color: #ff4d4d; }
+
+        /* No Result Message */
+        #noResult {
+            display: none;
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 50px;
+            color: #ff4d4d;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Pune Blood Directory</h1>
+        <p>Verified Blood Banks and Hospitals in Pune City</p>
+    </div>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Type to search (e.g. Ruby, Station, Kothrud)..." onkeyup="searchBank()">
+        <button style="background: #ff4d4d; color: white; border: none; padding: 0 25px; border-radius: 8px; cursor: pointer; font-weight: bold;">Search</button>
+    </div>
+
+    <p id="resultCount">Showing 4 Blood Banks</p>
+
+    <div id="noResult">No Blood Bank found with that name or area. 🛑</div>
+
+    <div class="bank-grid" id="bankGrid">
+        
+        <div class="bank-card">
+            <span class="status-tag">Govt. Certified</span>
+            <h3>Sassoon General Hospital</h3>
+            <p>📍 Near Pune Railway Station, Jai Prakash Narayan Road</p>
+            <p>📞 020 2612 8000</p>
+            <div class="stock-info">
+                <span class="group-tag">A+ (Available)</span>
+                <span class="group-tag">O+ (Full)</span>
+                <span class="group-tag">O- (Emergency)</span>
+            </div>
+            <a href="tel:02026128000" class="btn-call">Contact Hospital</a>
+        </div>
+
+        <div class="bank-card">
+            <span class="status-tag">Open 24/7</span>
+            <h3>Deenanath Mangeshkar Hospital</h3>
+            <p>📍 Erandwane, Near Mhatre Bridge, Pune</p>
+            <p>📞 020 4015 1000</p>
+            <div class="stock-info">
+                <span class="group-tag">All Groups (Available)</span>
+                <span class="group-tag">Platelets (High)</span>
+            </div>
+            <a href="tel:02040151000" class="btn-call">Contact Blood Bank</a>
+        </div>
+
+        <div class="bank-card">
+            <span class="status-tag">Premium Care</span>
+            <h3>Ruby Hall Clinic Blood Bank</h3>
+            <p>📍 40, Sassoon Road, Near Pune Station</p>
+            <p>📞 020 6645 5100</p>
+            <div class="stock-info">
+                <span class="group-tag">AB+ (Full)</span>
+                <span class="group-tag">A- (Limited)</span>
+            </div>
+            <a href="tel:02066455100" class="btn-call">Inquiry Now</a>
+        </div>
+
+        <div class="bank-card">
+            <span class="status-tag" style="background: #3498db;">NGO/Charity</span>
+            <h3>Jankalyan Blood Centre</h3>
+            <p>📍 1403, Shukrawar Peth, Near Saras Baug</p>
+            <p>📞 020 2444 9524</p>
+            <div class="stock-info">
+                <span class="group-tag">O+ (Full)</span>
+                <span class="group-tag">Plasma (Available)</span>
+            </div>
+            <a href="tel:02024449524" class="btn-call">Call Center</a>
+        </div>
+
+    </div>
+
+    <footer style="text-align: center; margin-top: 50px; color: #777; padding-bottom: 20px;">
+        <p>© 2026 Online Blood Donation System | Live Search Enabled</p>
+    </footer>
+
+    <script>
+        function searchBank() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('bank-card');
+            let count = 0;
+            let noResult = document.getElementById('noResult');
+
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].querySelector('h3').innerText.toLowerCase();
+                let address = cards[i].querySelector('p').innerText.toLowerCase();
+
+                if (name.includes(input) || address.includes(input)) {
+                    cards[i].style.display = "";
+                    count++;
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+
+            // Update Counter
+            document.getElementById('resultCount').innerText = "Found " + count + " Blood Banks";
+            
+            // Show/Hide No Result Message
+            if(count === 0) {
+                noResult.style.display = "block";
+            } else {
+                noResult.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>

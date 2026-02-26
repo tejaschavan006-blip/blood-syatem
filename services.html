@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Blood Donation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            /* Blood donation theme background */
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1615461066841-6116ecaaba7f?q=80&w=1600&auto=format&fit=crop');
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: #ff4d4d; /* Red theme */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            margin-top: 10px;
+            color: #ddd;
+        }
+
+        /* Services Grid */
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px 10% 80px 10%;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        /* Hover Effect */
+        .service-card:hover {
+            transform: translateY(-15px);
+            background: rgba(255, 77, 77, 0.2);
+            border-color: #ff4d4d;
+            box-shadow: 0 10px 30px rgba(255, 77, 77, 0.3);
+        }
+
+        .icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ff4d4d;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #eee;
+            margin-bottom: 20px;
+        }
+
+        .btn-service {
+            display: inline-block;
+            padding: 10px 25px;
+            background: #ff4d4d;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            border: 2px solid #ff4d4d;
+        }
+
+        .btn-service:hover {
+            background: transparent;
+            color: #ff4d4d;
+        }
+
+        /* Emergency Section */
+        .emergency-banner {
+            background: #ff4d4d;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin: 40px 10%;
+            border-radius: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0,0,0,0.8);
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Our Services</h1>
+        <p>Saving lives is just a click away. Choose a service to proceed.</p>
+    </header>
+
+    <div class="services-container">
+        
+        <div class="service-card">
+            <span class="icon">🔍</span>
+            <h3>Find Donors</h3>
+            <p>Apne area mein blood donors dhoondhein blood group ke hisaab se.</p>
+            <a href="search_blood.html" class="btn-service">Search Now</a>
+        </div>
+
+        <div class="service-card">
+            <span class="icon">🩸</span>
+            <h3>Donate Blood</h3>
+            <p>Ek donor ke roop mein register karein aur logon ki jaan bachayein.</p>
+            <a href="donor_register.html" class="btn-service">Register Me</a>
+        </div>
+
+        <div class="service-card">
+            <span class="icon">🏥</span>
+            <h3>Blood Banks</h3>
+            <p>Apne sheher ke sabse kareebi blood banks ki list aur location dekhein.</p>
+            <a href="blood_bank.html" class="btn-service">Locate Bank</a>
+        </div>
+
+        <div class="service-card">
+            <span class="icon">📜</span>
+            <h3>Eligibility Check</h3>
+            <p>Check karein ki kya aap blood donate karne ke liye fit hain ya nahi.</p>
+            <a href="#" class="btn-service">Check Now</a>
+        </div>
+
+    </div>
+
+    <div class="emergency-banner">
+        <h2>Khoon ki sakht zaroorat hai? (Emergency)</h2>
+        <p>Puraani requests dekhein ya turant apni request post karein.</p>
+        <br>
+        <a href="#" class="btn-service" style="background: white; color: #ff4d4d; border-color: white;">Create Urgent Request</a>
+    </div>
+
+    <footer>
+        <p>© 2026 Online Blood Donation System | Made for Humanity</p>
+    </footer>
+
+</body>
+</html>
